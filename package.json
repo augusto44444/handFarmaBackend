@@ -1,0 +1,41 @@
+{
+  "name": "handFarmaBackend",
+  "version": "1.0.0",
+  "description": "\"# handFarmaBackend\"",
+  "main": "src/api.js",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/augusto44444/handFarmaBackend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/augusto44444/handFarmaBackend/issues"
+  },
+  "homepage": "https://github.com/augusto44444/handFarmaBackend#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.14.0",
+    "express-query-int": "^1.0.1",
+    "jsonwebtoken": "^7.3.0",
+    "lodash": "^4.17.15",
+    "mysql": "^2.17.1",
+    "nodemailer": "^6.3.0",
+    "path": "^0.12.7",
+    "pm2": "^2.1.5",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "engines": {
+    "node": ">=6.11.1"
+  }
+}
