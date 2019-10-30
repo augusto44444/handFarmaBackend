@@ -23,7 +23,7 @@ router.get('/', ensureToken, function (req, res, next) {
             res.status(403)
         } else {
             ProdutoModel.getall(function (err, data) {
-                const resposta = new RespostaClass();
+                let resposta = new RespostaClass();
 
                 if (err) {
                     resposta.err = true;
@@ -36,6 +36,22 @@ router.get('/', ensureToken, function (req, res, next) {
                 res.json(resposta)
             })
         }
+    })
+})
+
+router.get('/farmacia/:id', function(req, res) {
+    ProdutoModel.getByFarmaciaId(req.params.id, function(err, data) {
+        let resposta = new RespostaClass()
+
+        if (err) {
+            resposta.err = true
+            resposta.msg = 'Ocorreu um erro no IF(getByFarmaciaId)'
+            resposta.errorMessage = err
+        } else {
+            resposta.dados = data
+            resposta.msg = 'Sucesso ao receber dados'
+        }
+        res.json(resposta)
     })
 })
 

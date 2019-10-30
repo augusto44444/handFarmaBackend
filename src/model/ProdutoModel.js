@@ -9,6 +9,13 @@ module.exports = class Produtos {
         return db.query(`SELECT * FROM produtos WHERE pro_in_codigo = ${id}`, callback)
     }
 
+    static getByFarmaciaId(id, callback) {
+        return db.query(`SELECT * FROM produtos p
+        INNER JOIN produto_farmacia pf ON p.pro_in_codigo = pf.pro_in_codigo
+        INNER JOIN farmacia f ON f.far_in_codigo = pf.far_in_codigo
+        where f.far_in_codigo = ${id}`, callback)
+    }
+
     static post(produtos, callback) {
         return db.query('insert into produtos( pro_st_nome, pro_st_marca, pro_st_cod_barra, pro_ch_classificacao) values(?, ?, ?, ?)', [produtos.nome, produtos.marca, produtos.codBarra, produtos.classificacao], callback)
     }
