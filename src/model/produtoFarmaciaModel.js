@@ -21,6 +21,21 @@ module.exports = class ProdutoFarmacia {
         return db.query(`DELETE FROM produto_farmacia WHERE pf_in_codigo = ${id}`, callback)
     }
 
-    
+    static searchUser(values, callback) {
+        return db.query(`
+        select * from produto_farmacia pf, farmacia far, produtos pro where
+        pf.pro_in_codigo = pro.pro_in_codigo and
+        pf.far_in_codigo = far.far_in_codigo and
+        (
+            far.far_st_rua like '%${values.endereco}%' or
+            far.far_st_bairro like '%${values.endereco}%' or
+            far.far_st_cidade like '%${values.endereco}%' )
+            and
+        (
+            pro.pro_st_nome like '%${values.remedio}%' or
+            pro.pro_st_marca like '%${values.remedio}%'
+        )`, callback)
+    }
+
 
 }

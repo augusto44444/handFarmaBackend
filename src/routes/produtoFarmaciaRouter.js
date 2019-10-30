@@ -62,6 +62,22 @@ router.post('/', function (req, res, next) {
     })
 })
 
+router.post('/search/', function (req, res, next) {
+    ProdutoFarmaciaModel.searchUser(req.body, function (err, data) {
+        const resposta = new RespostaClass();
+
+        if (err) {
+            resposta.err = true;
+            resposta.msg = 'Ocorreu um erro no IF(post)'
+            resposta.errorMessage = err
+        } else {
+            resposta.dados = data
+            resposta.msg = 'Sucesso ao receber dados'
+        }
+        res.json(resposta)
+    })
+})
+
 
 router.put('/', function (req, res, next) {
     ProdutoFarmaciaModel.put(req.body, function (err, data) {

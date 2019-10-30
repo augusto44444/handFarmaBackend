@@ -40,4 +40,7 @@ module.exports = class Produtos {
         pro_ch_classificacao like '%${name}%'`, callback)
     }
 
+
+    
+
 }
