@@ -12,6 +12,7 @@ server.use(bodyparser.json())
 const usuarioRouter = require('./routes/usuario')
 const FarmaciaRouter = require('./routes/farmaciaRouter')
 const ProdutoRouter = require('./routes/produtoRoutes')
+const produtoFarmaciaRouter = require('./routes/produtoFarmaciaRouter')
 
 
 router.get('/', (req, res, next) => {
@@ -24,6 +25,7 @@ server.use('/', router)
 server.use('/usuario', usuarioRouter)
 server.use('/Farmacia', FarmaciaRouter)
 server.use('/produto', ProdutoRouter)
+server.use('/produtoFarmacia', produtoFarmaciaRouter)
 
 
 server.listen(port, () => {
