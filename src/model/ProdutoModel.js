@@ -21,8 +21,16 @@ module.exports = class Produtos {
         return db.query(`DELETE FROM produtos WHERE pro_in_codigo = ${id}`, callback)
     }
 
-    static getByName(name, callback){
-        return db.query(`SELECT * FROM produtos WHERE pro_st_nome Like '%${name}%'`, callback)
+    static getByName(name, callback) {
+        return db.query(`SELECT * FROM 
+        produtos WHERE 
+        pro_st_nome Like '%${name}%' 
+        or 
+        pro_st_cod_barra like '%${name}%'
+        or 
+        pro_st_marca like '%${name}%'
+        or
+        pro_ch_classificacao like '%${name}%'`, callback)
     }
 
 }
