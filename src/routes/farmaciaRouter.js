@@ -19,6 +19,23 @@ router.get('/', function (req, res, next) {
     })
 })
 
+router.get('/user/:id', function (req, res, next) {
+    FarmaciaModel.getByUserId(req.params.id, function(err, data) {
+        const resposta = new RespostaClass()
+        
+        if(err) {
+            resposta.err = true
+            resposta.msg = 'Ocorreu um erro no IF(getall)'
+            resposta.errorMessage = err
+        } else {
+            resposta.dados = data
+            resposta.msg = 'Sucesso ao receber dados'
+        }
+
+        res.json(resposta)
+    })
+})
+
 
 router.post('/', function (req, res, next) {
     FarmaciaModel.post(req.body, function (err, data) {
