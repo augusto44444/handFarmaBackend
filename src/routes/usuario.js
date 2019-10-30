@@ -4,6 +4,8 @@ const usuarioModel = require('../model/UsuarioModel')
 const RespostaClass = require('../configs/RespostaClass')
 const db = require('../database/database')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+
 
 router.get('/', function (req, res, next) {
     usuarioModel.getall(function (err, data) {
@@ -146,6 +148,7 @@ router.post('/auth', (req, res, next) => {
                 if (result == true) {
                     resposta.dados = data
                     resposta.msg = 'Logado com Sucesso'
+                    resposta.token = jwt.sign({ data }, process.env.secret_key, { expiresIn: '30d' })
                 } else {
                     resposta.msg = 'Senha Incorreta'
                 }

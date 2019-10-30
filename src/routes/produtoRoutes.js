@@ -2,20 +2,40 @@ const express = require('express')
 const router = express.Router()
 const ProdutoModel = require('../model/ProdutoModel')
 const RespostaClass = require('../configs/RespostaClass')
+const jwt = require('jsonwebtoken')
 
-router.get('/', function (req, res, next) {
-    ProdutoModel.getall(function (err, data) {
-        const resposta = new RespostaClass();
+function ensureToken(req, res, next) {
+    const bearerHeader = req.headers["authorization"];
+    if (typeof bearerHeader !== 'undefined') {
+        const bearer = bearerHeader.split(" ");
+        const bearerToken = bearer[1];
+        req.token = bearerToken;
+        next()
+    } else {
+        res.sendStatus(403);
+    }
+}
 
+
+router.get('/', ensureToken, function (req, res, next) {
+    jwt.verify(req.token, process.env.secret_key, function (err, data) {
         if (err) {
-            resposta.err = true;
-            resposta.msg = 'Ocorreu um erro no IF(getall)'
-            resposta.errorMessage = err
+            res.status(403)
         } else {
-            resposta.dados = data
-            resposta.msg = 'Sucesso ao receber dados'
+            ProdutoModel.getall(function (err, data) {
+                const resposta = new RespostaClass();
+
+                if (err) {
+                    resposta.err = true;
+                    resposta.msg = 'Ocorreu um erro no IF(getall)'
+                    resposta.errorMessage = err
+                } else {
+                    resposta.dados = data
+                    resposta.msg = 'Sucesso ao receber dados'
+                }
+                res.json(resposta)
+            })
         }
-        res.json(resposta)
     })
 })
 
@@ -34,6 +54,8 @@ router.post('/', function (req, res, next) {
                 resposta.msg = 'Cadastrado com sucesso!!!'
             } else {
                 resposta.err = true;
+                resposta.dados =  data;
+                resposta.errorMessage = err;
                 resposta.msg = 'Ocorreu um erro no segundo IF(post)'
             }
         }
@@ -53,9 +75,11 @@ router.put('/', function (req, res, next) {
         } else {
             if (data.affectedRows > 0) {
                 resposta.dados = data
-                resposta.msg = 'Editado com sucesso!!!'
+                resposta.msg = 'Editadp com sucesso!!!'
             } else {
                 resposta.err = true;
+                resposta.dados =  data;
+                resposta.errorMessage = err;
                 resposta.msg = 'Ocorreu um erro no segundo IF(put)'
             }
         }
