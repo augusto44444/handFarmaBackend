@@ -29,5 +29,5 @@ server.use('/produtoFarmacia', produtoFarmaciaRouter)
 
 
 server.listen(port, () => {
-    console.log("Servido rodando na porta: " + port)
+    console.log("Servidor rodando na porta: " + port)
 })

@@ -6,17 +6,9 @@
   "scripts": {
     "dev": "nodemon"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/augusto44444/handFarmaBackend.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/augusto44444/handFarmaBackend/issues"
-  },
-  "homepage": "https://github.com/augusto44444/handFarmaBackend#readme",
   "dependencies": {
     "bcrypt": "^3.0.6",
     "body-parser": "^1.15.2",
