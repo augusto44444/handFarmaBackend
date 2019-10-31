@@ -1,9 +1,10 @@
 const express = require('express')
 const bodyparser = require('body-parser')
-const AllowCors = require('./configs/Cors')
+const AllowCors = require('./cors/Cors')
 const server = express()
 const router = express.Router();
 const port = process.env.PORT || 3000
+
 
 server.use(AllowCors);
 server.use(bodyparser.urlencoded({ extended: true }))
@@ -14,7 +15,7 @@ const FarmaciaRouter = require('./routes/farmaciaRouter')
 const ProdutoRouter = require('./routes/produtoRoutes')
 const produtoFarmaciaRouter = require('./routes/produtoFarmaciaRouter')
 
-
+console.log('oioioioioi')
 router.get('/', (req, res, next) => {
     res.json({
         message: "Api Rodando"
