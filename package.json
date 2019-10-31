@@ -1,7 +1,7 @@
 {
   "name": "handFarmaBackend",
   "version": "1.0.0",
-  "description": "\"# handFarmaBackend\"",
+  "description": "",
   "main": "src/api.js",
   "scripts": {
     "dev": "nodemon"
