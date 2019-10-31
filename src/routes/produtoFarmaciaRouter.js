@@ -93,6 +93,8 @@ router.put('/', function (req, res, next) {
                 resposta.msg = 'Editado com sucesso!!!'
             } else {
                 resposta.err = true;
+                resposta.dados = data;
+                resposta.errorMessage = err;
                 resposta.msg = 'Ocorreu um erro no segundo IF(put)'
             }
         }
