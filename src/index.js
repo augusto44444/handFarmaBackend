@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyparser = require('body-parser')
-const AllowCors = require('./cors/Cors')
+const AllowCors = require('./configs/Cors')
 const server = express()
 const router = express.Router();
 const port = process.env.PORT || 3000
