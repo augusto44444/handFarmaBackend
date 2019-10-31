@@ -15,7 +15,6 @@ const FarmaciaRouter = require('./routes/farmaciaRouter')
 const ProdutoRouter = require('./routes/produtoRoutes')
 const produtoFarmaciaRouter = require('./routes/produtoFarmaciaRouter')
 
-console.log('oioioioioi')
 router.get('/', (req, res, next) => {
     res.json({
         message: "Api Rodando"
