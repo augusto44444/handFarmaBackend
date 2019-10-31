@@ -3,8 +3,8 @@ require('dotenv').config()
 
 var connection = null
 
-if (process.env.JAWSDB_PUCE_URL) {
-    connection = mysql.createConnection(process.env.JAWSDB_PUCE_URL, { multipleStatements: true });
+if (process.env.JAWSDB_URL) {
+    connection = mysql.createConnection(process.env.JAWSDB_URL, { multipleStatements: true });
 } else {
     connection = mysql.createConnection({
         host: process.env.DB_HOST,
